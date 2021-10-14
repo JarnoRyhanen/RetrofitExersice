@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item
+        android:id="@+id/getPosts"
+        android:title="Get all posts"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/getPostsWithId"
+        android:title="Get post with id"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/getCommentsOnPostWithId"
+        android:title="Get all comments on post with id"
+        app:showAsAction="never"
+        />
+</menu>
