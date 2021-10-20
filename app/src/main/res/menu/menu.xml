@@ -18,4 +18,16 @@
         android:title="Get all comments on post with id"
         app:showAsAction="never"
         />
+    <item
+        android:id="@+id/post"
+        android:title="post"
+        app:showAsAction="never"
+        />
+<!--    <item-->
+<!--        android:id="@+id/getCommentsOnPostWithId"-->
+<!--        android:title="Get all comments on post with id"-->
+<!--        app:showAsAction="never"-->
+<!--        />-->
+
+
 </menu>
