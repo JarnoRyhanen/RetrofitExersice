@@ -78,45 +78,18 @@ public class MainActivity extends AppCompatActivity {
         } else if (item.getItemId() == R.id.post) {
             createPost();
             return true;
+        } else if (item.getItemId() == R.id.put) {
+            updatePostWithPut();
+            return true;
+        } else if (item.getItemId() == R.id.patch) {
+            updatePostWithPatch();
+            return true;
+        }  else if (item.getItemId() == R.id.delete) {
+            deletePost();
+            return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void createPost() {
-        Post post = new Post(1, "god is fake", "this is text");
-
-        //createpost with json
-//        Call<Post> call = jsonPlaceHolderApi.createPost(post);
-
-        //createpost with formulrencoded
-        Call<Post> call = jsonPlaceHolderApi.createPost(1, "god is fake",
-                "this is text");
-
-        call.enqueue(new Callback<Post>() {
-            @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
-                if (!response.isSuccessful()) {
-                    Log.e(TAG, "Code " + response.code());
-                    Toast.makeText(MainActivity.this, response.code(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Post postResponse = response.body();
-                String content = "";
-                content += "Code: " + response.code() + "\n";
-                content += "ID: " + postResponse.getID() + "\n";
-                content += "User ID: " + postResponse.getUserID() + "\n";
-                content += "Title: " + postResponse.getTitle() + "\n";
-                content += "Text: " + postResponse.getText() + "\n\n";
-
-                Log.d(TAG, "onResponse: " + content);
-            }
-
-            @Override
-            public void onFailure(Call<Post> call, Throwable t) {
-
-            }
-        });
     }
 
     private void getPostsWithUserId() {
@@ -196,6 +169,118 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call<List<Post>> call, Throwable t) {
                 Log.e(TAG, "onFailure: " + t.getMessage() + call.request().toString());
                 Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void createPost() {
+        Post post = new Post(1, "god is fake", "this is text");
+
+        //createpost with json
+//        Call<Post> call = jsonPlaceHolderApi.createPost(post);
+
+        //createpost with formulrencoded
+        Call<Post> call = jsonPlaceHolderApi.createPost(1, "god is fake",
+                "this is text");
+
+        call.enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                if (!response.isSuccessful()) {
+                    Log.e(TAG, "Code " + response.code());
+                    Toast.makeText(MainActivity.this, response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Post postResponse = response.body();
+                String content = "";
+                content += "Code: " + response.code() + "\n";
+                content += "ID: " + postResponse.getID() + "\n";
+                content += "User ID: " + postResponse.getUserID() + "\n";
+                content += "Title: " + postResponse.getTitle() + "\n";
+                content += "Text: " + postResponse.getText() + "\n\n";
+
+                Log.d(TAG, "onResponse: " + content);
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+                Log.e(TAG, "onFailure: ", t.fillInStackTrace());
+            }
+        });
+    }
+
+    private void updatePostWithPut() {
+        Post post = new Post(10, null, "lorem ipsum");
+
+        Call<Post> call = jsonPlaceHolderApi.putPost(92, post);
+        call.enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                if (!response.isSuccessful()) {
+                    Log.e(TAG, "Code " + response.code());
+                    Toast.makeText(MainActivity.this, response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Post postResponse = response.body();
+                String content = "";
+                content += "Code: " + response.code() + "\n";
+                content += "ID: " + postResponse.getID() + "\n";
+                content += "User ID: " + postResponse.getUserID() + "\n";
+                content += "Title: " + postResponse.getTitle() + "\n";
+                content += "Text: " + postResponse.getText() + "\n\n";
+
+                Log.d(TAG, "onResponse: " + content);
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+                Log.e(TAG, "onFailure: ", t.fillInStackTrace());
+            }
+        });
+    }
+
+    private void updatePostWithPatch() {
+        Post post = new Post(10, null, "lorem ipsum");
+
+        Call<Post> call = jsonPlaceHolderApi.patchPost(92, post);
+        call.enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                if (!response.isSuccessful()) {
+                    Log.e(TAG, "Code " + response.code());
+                    Toast.makeText(MainActivity.this, response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Post postResponse = response.body();
+                String content = "";
+                content += "Code: " + response.code() + "\n";
+                content += "ID: " + postResponse.getID() + "\n";
+                content += "User ID: " + postResponse.getUserID() + "\n";
+                content += "Title: " + postResponse.getTitle() + "\n";
+                content += "Text: " + postResponse.getText() + "\n\n";
+
+                Log.d(TAG, "onResponse: " + content);
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+                Log.e(TAG, "onFailure: ", t.fillInStackTrace());
+            }
+        });
+    }
+
+    private void deletePost() {
+
+        Call<Void> call = jsonPlaceHolderApi.deletePost(11);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.d(TAG, "onResponse: " + response.code());
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.e(TAG, "onFailure: ", t.fillInStackTrace());
             }
         });
     }

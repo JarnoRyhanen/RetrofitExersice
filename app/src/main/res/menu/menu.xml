@@ -23,6 +23,21 @@
         android:title="post"
         app:showAsAction="never"
         />
+    <item
+        android:id="@+id/put"
+        android:title="put"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/patch"
+        android:title="patch"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/delete"
+        android:title="delete"
+        app:showAsAction="never"
+        />
 <!--    <item-->
 <!--        android:id="@+id/getCommentsOnPostWithId"-->
 <!--        android:title="Get all comments on post with id"-->
